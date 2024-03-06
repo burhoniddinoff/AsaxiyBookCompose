@@ -3,6 +3,7 @@ package com.example.asaxiybookcompose.presentation.screen.register
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,14 +12,17 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,7 +37,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.asaxiybookcompose.R
+import com.example.asaxiybookcompose.presentation.screen.main.MainScreen
 
 class RegisterScreen : Screen {
 
@@ -42,14 +49,21 @@ class RegisterScreen : Screen {
 
         val textValue by remember { mutableStateOf("") }
 
-        ScreenContent(textValue)
+        val navigation = LocalNavigator.currentOrThrow
+        LaunchedEffect(key1 = Unit) {
+
+        }
+        ScreenContent(textValue = textValue, enterClick = { navigation.push(MainScreen()) })
+
+
+//        val viewModel = getViewModel<RegisterVM>()
 
     }
 
 }
 
 @Composable
-fun ScreenContent(textValue: String) {
+fun ScreenContent(textValue: String, enterClick: () -> Unit) {
 
     Column(
         modifier = Modifier
@@ -108,16 +122,16 @@ fun ScreenContent(textValue: String) {
 
 
         MyText(text = "Emailingizni kiriting")
-        MyEditText(textValue = textValue, "Enter your email!")
+        MyEditText(textValue = textValue, "Enter your email!", KeyboardType.Email)
 
         MyText(text = "Password")
-        MyEditText(textValue = textValue, "Enter your password!")
+        MyEditText(textValue = textValue, "Enter your password!", KeyboardType.Password)
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = { enterClick() },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 24.dp, end = 24.dp, top = 24.dp)
+                .padding(start = 24.dp, end = 24.dp, top = 30.dp)
                 .height(50.dp),
             colors = ButtonDefaults.buttonColors(Color(0xFF008dff)),
             shape = RoundedCornerShape(12.dp)
@@ -129,6 +143,60 @@ fun ScreenContent(textValue: String) {
         }
 
 
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 24.dp, end = 24.dp, top = 40.dp)
+        ) {
+
+            Box(
+                modifier = Modifier
+                    .height(2.dp)
+                    .background(Color.White)
+                    .weight(0.4f)
+            )
+
+            Text(
+                text = "Yoki",
+                color = Color(0xFFe2e2e2),
+                modifier = Modifier.padding(horizontal = 10.dp)
+            )
+
+            Box(
+                modifier = Modifier
+                    .height(2.dp)
+                    .background(Color.White)
+                    .weight(0.4f)
+            )
+
+        }
+
+        Button(
+            onClick = { /*TODO*/ },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 24.dp, end = 24.dp, top = 30.dp)
+                .height(50.dp),
+            colors = ButtonDefaults.buttonColors(Color(0xFF008dff)),
+            shape = RoundedCornerShape(12.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_email),
+                    contentDescription = null
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Text(
+                    text = "Email orqali ro'yhatdan o'tish",
+                    fontSize = 14.sp
+                )
+            }
+        }
 
     }
 
@@ -145,7 +213,7 @@ fun MyText(text: String) {
 }
 
 @Composable
-fun MyEditText(textValue: String, hint: String) {
+fun MyEditText(textValue: String, hint: String, keyboardType: KeyboardType) {
     TextField(
         value = textValue,
         onValueChange = {
@@ -155,7 +223,7 @@ fun MyEditText(textValue: String, hint: String) {
             .fillMaxWidth()
             .padding(start = 24.dp, end = 24.dp, top = 10.dp),
         placeholder = { Text(hint) },
-        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Email),
+        keyboardOptions = KeyboardOptions.Default.copy(keyboardType = keyboardType),
         maxLines = 1,
         shape = RoundedCornerShape(12.dp),
 //            colors = TextFieldDefaults.colors(),
@@ -168,6 +236,6 @@ fun MyEditText(textValue: String, hint: String) {
 @Composable
 private fun PreviewContent() {
     MaterialTheme {
-        ScreenContent("")
+        ScreenContent("", {})
     }
 }

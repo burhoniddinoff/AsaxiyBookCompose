@@ -33,7 +33,7 @@ class SplashScreen : Screen {
 
         LaunchedEffect(key1 = Unit) {
             delay(2000)
-            navigation.push(RegisterScreen())
+            navigation.replace(RegisterScreen())
         }
 
         ScreenContent()
