@@ -13,12 +13,12 @@ import com.example.asaxiybookcompose.ui.theme.AsaxiyBookComposeTheme
 class LibraryScreen : Screen {
     @Composable
     override fun Content() {
-        ScreenContent()
+        LibraryContent()
     }
 }
 
 @Composable
-fun ScreenContent() {
+fun LibraryContent() {
 
     Column(
         modifier = Modifier
@@ -34,6 +34,6 @@ fun ScreenContent() {
 @Composable
 private fun PreviewContent() {
     AsaxiyBookComposeTheme {
-        ScreenContent()
+        LibraryContent()
     }
 }

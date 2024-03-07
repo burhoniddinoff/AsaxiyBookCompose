@@ -69,7 +69,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Voyager
-    val voyagerVersion = "1.0.0"
     implementation(libs.voyager.navigator)
     implementation(libs.voyager.transitions)
     implementation(libs.voyager.hilt)
@@ -80,4 +79,12 @@ dependencies {
 
     // Lottie
     implementation(libs.lottie.compose)
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    implementation(libs.ui) // Используйте актуальную версию
+    implementation(libs.androidx.material) // Используйте актуальную версию
+    implementation(libs.ui.tooling.preview)
+    debugImplementation(libs.ui.tooling)
 }
