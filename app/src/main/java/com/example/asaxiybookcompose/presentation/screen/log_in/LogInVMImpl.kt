@@ -31,7 +31,8 @@ class LogInVMImpl @Inject constructor(
             }
 
             is LogInVM.MenuIntent.SignScreen -> {
-                logInRequest(intent.gmail, intent.passWord)
+//                logInRequest(intent.gmail, intent.passWord)
+                nextScreen()
             }
         }
 
