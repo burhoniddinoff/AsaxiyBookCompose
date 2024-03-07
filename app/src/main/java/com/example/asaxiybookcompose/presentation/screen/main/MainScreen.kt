@@ -90,7 +90,6 @@ fun ScreenContent(pageState: PagerState, onCLick: (Int) -> Unit) {
                 when (it) {
                     0 -> {
                         BookContent()
-//                        BookScreen()
                     }
 
                     1 -> {

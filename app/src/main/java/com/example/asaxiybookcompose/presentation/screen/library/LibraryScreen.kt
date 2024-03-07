@@ -48,16 +48,16 @@ data class CategoryData(
 
 val arrayList = ArrayList<LibraryData>().apply {
     add(LibraryData(R.drawable.book, "O'tkan kunlar", "Abdulla Qodiriy"))
-    add(LibraryData(R.drawable.book, "O'tkan kunlar", "Abdulla Qodiriy"))
-    add(LibraryData(R.drawable.book, "O'tkan kunlar", "Abdulla Qodiriy"))
-    add(LibraryData(R.drawable.book, "O'tkan kunlar", "Abdulla Qodiriy"))
-    add(LibraryData(R.drawable.book, "O'tkan kunlar", "Abdulla Qodiriy"))
-    add(LibraryData(R.drawable.book, "O'tkan kunlar", "Abdulla Qodiriy"))
+    add(LibraryData(R.drawable.book, "Men Bilol", "Garri Kreyg"))
+    add(LibraryData(R.drawable.book, "Jimjitlik", "Said Ahmad"))
+    add(LibraryData(R.drawable.book, "Cho'qintirgan ota", "Morio Puzo"))
+    add(LibraryData(R.drawable.book, "Men Bilol", "Garri Kreyg"))
+    add(LibraryData(R.drawable.book, "Jimjitlik", "Said Ahmad"))
 }
 
 val ls = ArrayList<CategoryData>().apply {
-    add(CategoryData("Books1", arrayList))
-    add(CategoryData("Books2", arrayList))
+    add(CategoryData("Books1", arrayList.subList(0, 2)))
+    add(CategoryData("Books2", arrayList.subList(0, 4)))
     add(CategoryData("Books3", arrayList))
 }
 
