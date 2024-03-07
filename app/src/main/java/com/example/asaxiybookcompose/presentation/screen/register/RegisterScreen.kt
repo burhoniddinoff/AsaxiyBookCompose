@@ -53,8 +53,8 @@ class RegisterScreen : Screen {
         LaunchedEffect(key1 = Unit) {
 
         }
-        ScreenContent(textValue = textValue, enterClick = { navigation.push(MainScreen()) })
 
+        ScreenContent(textValue = textValue, enterClick = { navigation.push(MainScreen()) })
 
 //        val viewModel = getViewModel<RegisterVM>()
 
@@ -236,6 +236,6 @@ fun MyEditText(textValue: String, hint: String, keyboardType: KeyboardType) {
 @Composable
 private fun PreviewContent() {
     MaterialTheme {
-        ScreenContent("", {})
+        ScreenContent("asasd", {})
     }
 }

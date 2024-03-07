@@ -127,7 +127,7 @@ fun LibraryContent() {
 
                         Text(
                             text = "Hammasi",
-                            color = Color.Blue,
+                            color = Color(0xFF008dff),
                             fontSize = 20.sp,
                             modifier = Modifier
                                 .align(Alignment.CenterEnd)
