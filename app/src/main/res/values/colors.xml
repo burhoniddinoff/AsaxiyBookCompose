@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="no_active">#94a3b8</color>
     <color name="active">#008dff</color>
+    <color name="app_color">#0F172B</color>
 </resources>
