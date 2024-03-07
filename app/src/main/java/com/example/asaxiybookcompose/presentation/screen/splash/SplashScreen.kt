@@ -10,6 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import cafe.adriel.voyager.core.screen.Screen
@@ -54,6 +55,7 @@ fun ScreenContent() {
             modifier = Modifier.fillMaxSize(),
             painter = painterResource(id = R.drawable.gradient),
             contentDescription = null,
+            contentScale = ContentScale.Crop
         )
 
         Column(
@@ -68,8 +70,8 @@ fun ScreenContent() {
                 composition = composition,
                 progress = { progress },
             )
-        }
 
+        }
 
     }
 

@@ -49,9 +49,11 @@ class MainScreen : Screen {
     @Composable
     override fun Content() {
         val navController = rememberNavController()
+
         ScreenContent(items, navController) { screen ->
             navController.navigate(screen)
         }
+
     }
 }
 
@@ -85,7 +87,7 @@ fun ScreenContent(
                         NavigationBarItem(
                             selected = false,
                             onClick = { onItemSelected(screens[index]) },
-                            icon = { /*TODO*/ })
+                            icon = { /* TODO    */ })
                     }
                 }
             }
