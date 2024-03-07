@@ -61,6 +61,7 @@ class MainScreen : Screen {
 
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ScreenContent(pageState: PagerState, onCLick: (Int) -> Unit) {

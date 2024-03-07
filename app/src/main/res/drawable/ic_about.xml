@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:height="24dp" android:width="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <group>
+        <clip-path android:pathData="M0,0h24v24h-24z"/>
+        <path android:fillColor="#00000000" android:pathData="M20,8V5C20,4.47 19.789,3.961 19.414,3.586C19.039,3.211 18.53,3 18,3H5C4.47,3 3.961,3.211 3.586,3.586C3.211,3.961 3,4.47 3,5V19C3,19.53 3.211,20.039 3.586,20.414C3.961,20.789 4.47,21 5,21H8" android:strokeColor="#008dff" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+        <path android:fillColor="#00000000" android:pathData="M7,8H16" android:strokeColor="#008dff" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+        <path android:fillColor="#00000000" android:pathData="M7,12H9" android:strokeColor="#008dff" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+        <path android:fillColor="#00000000" android:pathData="M7,16H8" android:strokeColor="#008dff" android:strokeWidth="1.8" android:strokeLineCap="round" android:strokeLineJoin="round"/>
+        <path android:fillColor="#008efd" android:pathData="M21.999,20.304L17.941,11.535L16.98,13.674L20.291,21.16L21.999,20.304Z"/>
+        <path android:fillColor="#008efd" android:pathData="M15.485,11H17.408C16.589,12.782 14.823,16.625 14.311,17.737C13.2,17.908 12.139,18.593 11.748,18.913L15.485,11Z"/>
+        <path android:fillColor="#7fc5ff" android:pathData="M17.399,17.444H15.876C15.596,17.444 15.412,17.152 15.533,16.899L16.236,15.432C16.369,15.154 16.761,15.142 16.911,15.411L17.732,16.878C17.873,17.131 17.69,17.444 17.399,17.444Z"/>
+        <path android:fillColor="#008efd" android:pathData="M18.155,18.273L19.223,20.625C16.489,19 13.741,20.376 12.709,21.267L11,20.411C13.307,17.845 16.731,17.916 18.155,18.273Z"/>
+    </group>
+</vector>
