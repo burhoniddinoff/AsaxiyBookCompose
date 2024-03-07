@@ -21,7 +21,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.asaxiybookcompose.R
-import com.example.asaxiybookcompose.presentation.screen.register.RegisterScreen
+import com.example.asaxiybookcompose.presentation.screen.log_in.LogInScreen
 import com.example.asaxiybookcompose.ui.theme.AsaxiyBookComposeTheme
 import kotlinx.coroutines.delay
 
@@ -34,7 +34,7 @@ class SplashScreen : Screen {
 
         LaunchedEffect(key1 = Unit) {
             delay(2000)
-            navigation.replace(RegisterScreen())
+            navigation.replace(LogInScreen())
         }
 
         ScreenContent()

@@ -4,6 +4,7 @@ plugins {
 
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -87,4 +88,16 @@ dependencies {
     implementation(libs.androidx.material) // Используйте актуальную версию
     implementation(libs.ui.tooling.preview)
     debugImplementation(libs.ui.tooling)
+
+    /**
+     *  Firebase
+     */
+    implementation(platform(libs.firebase.bom))
+
+    //noinspection UseTomlInstead
+    implementation("com.google.firebase:firebase-analytics")
+
+    //noinspection UseTomlInstead
+    implementation("com.google.firebase:firebase-firestore")
+
 }

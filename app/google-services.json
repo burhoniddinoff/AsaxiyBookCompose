@@ -1,0 +1,124 @@
+{
+  "project_info": {
+    "project_number": "771968241733",
+    "project_id": "asaxiybooks-6f7ed",
+    "storage_bucket": "asaxiybooks-6f7ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771968241733:android:a5ba614c363b316f27932c",
+        "android_client_info": {
+          "package_name": "com.example.asaxiybookcompose"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq2WDBapM7jvvtAQcfx2Sbt9VpmH49yJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771968241733:android:6eed9b64379afc2f27932c",
+        "android_client_info": {
+          "package_name": "com.example.assaxiybookcompose"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq2WDBapM7jvvtAQcfx2Sbt9VpmH49yJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771968241733:android:79befb5e5e81349f27932c",
+        "android_client_info": {
+          "package_name": "com.example.assaxiycompose"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq2WDBapM7jvvtAQcfx2Sbt9VpmH49yJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771968241733:android:d13096c97c71593627932c",
+        "android_client_info": {
+          "package_name": "com.example.mybookapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq2WDBapM7jvvtAQcfx2Sbt9VpmH49yJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771968241733:android:3be0d6e45b02c90027932c",
+        "android_client_info": {
+          "package_name": "com.sudo_pacman.asaxiybooks"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq2WDBapM7jvvtAQcfx2Sbt9VpmH49yJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771968241733:android:0c661ba01955ded927932c",
+        "android_client_info": {
+          "package_name": "uz.developers.compose2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq2WDBapM7jvvtAQcfx2Sbt9VpmH49yJo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
