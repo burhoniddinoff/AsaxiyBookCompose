@@ -37,12 +37,15 @@ class AudioVM @Inject constructor(
                         errorMessage.emit(it.message.toString())
                     }
                 }.launchIn(viewModelScope)
+            }
 
+            AudioIntent.ButtonClick -> {
+                nextScreen()
             }
         }
     }
 
-    fun nextScreen() {
+    private fun nextScreen() {
         viewModelScope.launch {
             navigator.navigate(AudioItemScreen())
         }
