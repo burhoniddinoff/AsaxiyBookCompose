@@ -20,6 +20,10 @@ import cafe.adriel.voyager.navigator.tab.CurrentTab
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
+import com.example.asaxiybookcompose.presentation.screen.tab.AudioTab
+import com.example.asaxiybookcompose.presentation.screen.tab.HomeTab
+import com.example.asaxiybookcompose.presentation.screen.tab.LibraryTab
+import com.example.asaxiybookcompose.presentation.screen.tab.ProfileTab
 import com.example.asaxiybookcompose.ui.theme.AsaxiyBookComposeTheme
 
 class MainScreen : Screen {

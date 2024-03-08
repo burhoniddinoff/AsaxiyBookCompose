@@ -1,4 +1,4 @@
-package com.example.asaxiybookcompose.presentation.screen.main
+package com.example.asaxiybookcompose.presentation.screen.tab
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -11,14 +11,14 @@ import androidx.compose.ui.res.painterResource
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.example.asaxiybookcompose.R
-import com.example.asaxiybookcompose.presentation.screen.library.LibraryScreen
+import com.example.asaxiybookcompose.presentation.screen.audio.AudioScreen
 
-object LibraryTab : Tab {
+object AudioTab : Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val title = "Kutubxona"
-            val icon = painterResource(R.drawable.ic_menu_library)
+            val title = "Audion"
+            val icon = painterResource(R.drawable.ic_menu_audio)
 
             return remember {
                 TabOptions(
@@ -34,8 +34,9 @@ object LibraryTab : Tab {
         Box(
             modifier = Modifier
                 .fillMaxSize()
+                .background(Color.White)
         ) {
-            LibraryScreen().Content()
+            AudioScreen().Content()
         }
     }
 }
