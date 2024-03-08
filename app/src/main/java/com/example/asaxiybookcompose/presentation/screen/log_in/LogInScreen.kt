@@ -54,7 +54,7 @@ class LogInScreen : Screen {
 }
 
 @Composable
-fun ScreenContent(eventDispatcher: (LogInVM.MenuIntent) -> Unit) {
+fun ScreenContent(eventDispatcher: (MenuIntent) -> Unit) {
 
     Column(
         modifier = Modifier
@@ -153,9 +153,7 @@ fun ScreenContent(eventDispatcher: (LogInVM.MenuIntent) -> Unit) {
 
         Button(
             onClick = {
-                eventDispatcher(
-                    LogInVM.MenuIntent.SignScreen(gmail, password)
-                )
+                MenuIntent.SignScreen(gmail, password)
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -201,7 +199,7 @@ fun ScreenContent(eventDispatcher: (LogInVM.MenuIntent) -> Unit) {
 
         Button(
             onClick = {
-                eventDispatcher(LogInVM.MenuIntent.ButtonClick)
+                eventDispatcher(MenuIntent.ButtonClick)
             },
             modifier = Modifier
                 .fillMaxWidth()
