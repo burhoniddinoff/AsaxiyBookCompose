@@ -50,8 +50,6 @@ class AudioItemScreen(val data: BookUIData) : Screen {
 
         AudioItemContent(data, viewModel::onEventDispatcher, mediaPlayer)
 
-
-
         viewModel.onEventDispatcher(AudioItemIntent.OpenAudio(data))
 
         val audio by viewModel.audio.collectAsState(initial = null)
@@ -73,7 +71,7 @@ class AudioItemScreen(val data: BookUIData) : Screen {
                     }
                 }
             }
-            else mediaPlayer?.stop()
+//            else mediaPlayer?.stop()
         }
     }
 
