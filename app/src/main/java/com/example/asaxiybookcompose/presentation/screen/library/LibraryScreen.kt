@@ -49,6 +49,7 @@ class LibraryScreen : Screen {
     @Composable
     override fun Content() {
         val viewModel = getViewModel<LibraryViewModel>()
+        viewModel.onEventDispatcherLibrary(LibraryIntent.GetAllCategoryList)
         val categoryList by viewModel.loadCategoryBookList.collectAsState(initial = null)
 
         val message by viewModel.errorMessage.collectAsState(initial = null)
@@ -179,9 +180,13 @@ fun ItemLibrary(product: BookUIData, eventDispatcher: (LibraryIntent) -> Unit) {
         }
 
         Text(
-            text = product.name, modifier = Modifier
+            text = product.name,
+            modifier = Modifier
                 .padding(top = 10.dp)
-                .width(100.dp), fontSize = 18.sp, color = Color.White, maxLines = 2
+                .width(100.dp),
+            fontSize = 18.sp,
+            color = Color.White,
+            maxLines = 2
         )
         Text(text = product.author, fontSize = 14.sp, color = Color(0xFF59688F))
     }
