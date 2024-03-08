@@ -181,7 +181,8 @@ fun ItemLibrary(product: BookUIData, eventDispatcher: (LibraryIntent) -> Unit) {
                 contentDescription = null,
                 modifier = Modifier.height(200.dp),
                 contentScale = ContentScale.Crop,
-                error = painterResource(id = R.drawable.book),
+                placeholder = painterResource(id = R.drawable.book),
+                error = painterResource(id = R.drawable.ic_log_out),
             )
         }
 

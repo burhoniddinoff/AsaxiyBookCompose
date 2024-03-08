@@ -29,7 +29,7 @@ class SearchVM @Inject constructor(
                 backScreen()
             }
 
-           is SearchIntent.NextScreen -> {
+            is SearchIntent.NextScreen -> {
                 nextScreen(intent.data)
             }
 

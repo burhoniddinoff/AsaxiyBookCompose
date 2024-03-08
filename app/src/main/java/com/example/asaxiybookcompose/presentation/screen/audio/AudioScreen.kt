@@ -78,7 +78,7 @@ fun LibraryContent(data: List<CategoryByBooksData>, eventListener: (AudioIntent)
                 .padding(bottom = 20.dp),
         ) {
             Text(
-                text = "Kutubxona",
+                text = "Audio books",
                 fontSize = 24.sp,
                 color = Color.White,
                 fontFamily = FontFamily(Font(R.font.roboto_medium)),
@@ -182,7 +182,8 @@ fun ItemLibrary(product: BookUIData, eventListener: (AudioIntent) -> Unit) {
                 contentDescription = null,
                 modifier = Modifier.height(200.dp),
                 contentScale = ContentScale.Crop,
-                error = painterResource(id = R.drawable.book),
+                placeholder = painterResource(id = R.drawable.book),
+                error = painterResource(id = R.drawable.ic_log_out),
             )
 
         }

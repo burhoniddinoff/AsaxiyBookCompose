@@ -1,10 +1,10 @@
 package com.example.asaxiybookcompose.domain.Impl
 
+import com.example.asaxiybookcompose.data.data.BookUIData
 import com.example.asaxiybookcompose.domain.AppRepository
 import com.example.asaxiybookcompose.myLog
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.example.asaxiybookcompose.data.data.BookUIData
 import com.sudo_pacman.asaxiybooks.data.model.CategoryByBooksData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
@@ -260,6 +260,7 @@ class AppRepositoryImpl @Inject constructor(
                 trySend(Result.success(arrayListOf()))
             else {
                 fireStore.collection("books_data")
+                    .whereEqualTo("type", "pdf")
                     .get()
                     .addOnSuccessListener { querySnapshot ->
                         val booksList = ArrayList<BookUIData>()

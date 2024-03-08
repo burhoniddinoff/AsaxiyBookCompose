@@ -11,11 +11,11 @@ interface BookDao {
     fun getAllBooks(): List<EntityBookData>
 
     @Query("SELECT * FROM entitybookdata where id=:id")
-    fun getBooksById(id:Long): EntityBookData
+    fun getBooksById(id: Long): EntityBookData
 
     @Insert
     fun setBook(bookData: EntityBookData)
 
     @Query("Select id From entitybookdata Where bookUrl = :url")
-    fun isHas(url:String):Long
+    fun isHas(url: String): Long
 }

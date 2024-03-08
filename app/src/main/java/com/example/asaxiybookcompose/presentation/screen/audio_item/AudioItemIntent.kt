@@ -5,5 +5,5 @@ import com.example.asaxiybookcompose.data.data.BookUIData
 interface AudioItemIntent {
     data object OnClickBack : AudioItemIntent
 
-    data class OpenAudio(val bookUIData: BookUIData): AudioItemIntent
+    data class OpenAudio(val bookUIData: BookUIData) : AudioItemIntent
 }

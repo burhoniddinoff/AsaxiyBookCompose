@@ -1,7 +1,6 @@
 package com.example.asaxiybookcompose.presentation.screen.book_info
 
 import androidx.compose.runtime.MutableState
-import kotlinx.coroutines.flow.Flow
 
 interface BookDetailViewModel {
 

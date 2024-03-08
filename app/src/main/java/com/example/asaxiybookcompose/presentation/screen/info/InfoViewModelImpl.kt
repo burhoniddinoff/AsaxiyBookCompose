@@ -6,7 +6,6 @@ import com.example.asaxiybookcompose.data.data.BookUIData
 import com.example.asaxiybookcompose.data.data.UploadData
 import com.example.asaxiybookcompose.domain.BookRepository
 import com.example.asaxiybookcompose.myLog
-import com.example.asaxiybookcompose.presentation.screen.library.LibraryIntent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.launchIn
@@ -16,12 +15,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class InfoViewModelImpl @Inject constructor(
-    private val repo: BookRepository
+    private val repo: BookRepository,
 ) : ViewModel() {
     val book = MutableSharedFlow<File>()
 
     fun onEventDispatcherLibrary(intent: InfoViewModel) {
-        when(intent) {
+        when (intent) {
             is InfoViewModel.OpenBook -> {
                 if (isDownload(intent.bookData)) {
                     repo.getBook(intent.bookData)
@@ -32,15 +31,14 @@ class InfoViewModelImpl @Inject constructor(
                             }
                         }
                         .launchIn(viewModelScope)
-                }
-                else {
+                } else {
                     downloadBook(intent.bookData)
                 }
             }
         }
     }
 
-     private fun downloadBook(bookUIData: BookUIData) {
+    private fun downloadBook(bookUIData: BookUIData) {
         "repo download qilish kerak: ${bookUIData.bookUrl}".myLog()
         repo.downloadBookWithProgress(bookUIData)
             .onEach {
@@ -54,7 +52,7 @@ class InfoViewModelImpl @Inject constructor(
                         "model download success".myLog()
                         repo.getBook(bookUIData)
                             .onEach { result ->
-                                result.onSuccess {file ->
+                                result.onSuccess { file ->
                                     "model bor kitobni olish o;xshadi $file".myLog()
                                     book.emit(file)
                                 }
@@ -68,7 +66,7 @@ class InfoViewModelImpl @Inject constructor(
             .launchIn(viewModelScope)
     }
 
-     private fun isDownload(book: BookUIData): Boolean {
+    private fun isDownload(book: BookUIData): Boolean {
         "model info bu kitob yuklab olinganmi".myLog()
         return repo.isDownload(book)
     }

@@ -19,7 +19,7 @@ import java.io.File
 import javax.inject.Inject
 
 class BookRepositoryImpl @Inject constructor(
-    private val bookDao: BookDao
+    private val bookDao: BookDao,
 ) : BookRepository {
     private val fireStorage = Firebase.storage
     private val fireStore = Firebase.firestore

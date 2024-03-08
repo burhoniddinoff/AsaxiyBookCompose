@@ -16,12 +16,12 @@ import javax.inject.Singleton
 class LocalSourceModule {
 
     @[Provides Singleton]
-    fun provideAppDatabase(@ApplicationContext context: Context) : AppDatabase =
+    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase =
         Room.databaseBuilder(context, AppDatabase::class.java, "MyContact.db")
             .allowMainThreadQueries()
             .build()
 
 
     @[Provides Singleton]
-    fun provideContactDao(database: AppDatabase) : BookDao = database.getBookDao()
+    fun provideContactDao(database: AppDatabase): BookDao = database.getBookDao()
 }

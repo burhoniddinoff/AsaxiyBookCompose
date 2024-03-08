@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AudioItemVM @Inject constructor(
     private val navigator: AppNavigator,
-    private val repo: AudioRepository
+    private val repo: AudioRepository,
 ) : ViewModel() {
 
     val audio = MutableSharedFlow<File>()
@@ -44,7 +44,7 @@ class AudioItemVM @Inject constructor(
     private fun downloadBook(bookUIData: BookUIData) {
         "repo download qilish kerak bo'lgan audio: ${bookUIData.bookUrl}".myLog()
         repo.downloadAudioWithProgress(bookUIData.bookUrl)
-            .onEach {file ->
+            .onEach { file ->
                 audio.emit(file)
             }
             .launchIn(viewModelScope)

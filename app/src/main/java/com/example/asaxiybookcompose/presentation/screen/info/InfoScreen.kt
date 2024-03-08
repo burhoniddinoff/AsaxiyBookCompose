@@ -16,8 +16,6 @@ import com.example.asaxiybookcompose.myLog
 import com.rizzi.bouquet.ResourceType
 import com.rizzi.bouquet.VerticalPDFReader
 import com.rizzi.bouquet.rememberVerticalPdfReaderState
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.onEach
 
 class InfoScreen(private val product: BookUIData) : Screen {
     @Composable

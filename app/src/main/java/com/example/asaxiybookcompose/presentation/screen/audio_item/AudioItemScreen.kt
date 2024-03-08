@@ -204,8 +204,7 @@ fun AudioItemContent(data: BookUIData, eventListener: (AudioItemIntent) -> Unit,
                         mediaPlayer?.let {
                             if (mediaPlayer.isPlaying) {
                                 mediaPlayer.stop()
-                            }
-                            else {
+                            } else {
                                 mediaPlayer.start()
                             }
                         }

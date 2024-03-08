@@ -3,16 +3,16 @@ package com.example.asaxiybookcompose.data.data
 import java.io.File
 
 sealed interface UploadData {
-    data object PAUSE: UploadData
+    data object PAUSE : UploadData
     data object RESUME : UploadData
-    data object CANCEL: UploadData
+    data object CANCEL : UploadData
 
     data class Success(
-        val book: File
+        val book: File,
     ) : UploadData
 
     data class Error(
-        val message: String
+        val message: String,
     ) : UploadData
 
     data class Progress(
