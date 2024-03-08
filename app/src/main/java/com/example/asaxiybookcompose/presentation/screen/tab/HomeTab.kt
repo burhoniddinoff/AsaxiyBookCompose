@@ -1,4 +1,4 @@
-package com.example.asaxiybookcompose.presentation.screen.main
+package com.example.asaxiybookcompose.presentation.screen.tab
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -11,18 +11,18 @@ import androidx.compose.ui.res.painterResource
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.example.asaxiybookcompose.R
-import com.example.asaxiybookcompose.presentation.screen.profile.ProfileScreen
+import com.example.asaxiybookcompose.presentation.screen.book.BookScreen
 
-object ProfileTab : Tab {
+object HomeTab : Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val title = "Profil"
-            val icon = painterResource(R.drawable.ic_menu_profile)
+            val title = "Kitoblarim"
+            val icon = painterResource(R.drawable.ic_menu_book)
 
             return remember {
                 TabOptions(
-                    index = 2u,
+                    index = 0u,
                     title = title,
                     icon = icon
                 )
@@ -34,9 +34,14 @@ object ProfileTab : Tab {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.White)
+                .background(Color.Black)
         ) {
-            ProfileScreen().Content()
+            BookScreen().Content()
         }
     }
 }
+
+
+
+
+

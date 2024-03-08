@@ -65,5 +65,22 @@ object MySharedPreference {
         sharedPreferences.edit().putBoolean("login", false).apply()
     }
 
+    fun getDownlandBookId(): ArrayList<String> {
+        val size = sharedPreferences.getInt("booksIdSize", 0)
+        val data = ArrayList<String>(size)
+        for (i in 0..<size) {
+            data.add(sharedPreferences.getString("bookId$i", "") ?: "")
+        }
+        return data
+    }
+
+    fun setDownlandBookId(bookId: String) {
+        val list = getDownlandBookId()
+        list.add(bookId)
+        sharedPreferences.edit().putInt("booksIdSize", list.size).apply()
+        for (i in 0..<list.size) {
+            sharedPreferences.edit().putString("bookId$i", list[i]).apply()
+        }
+    }
 
 }

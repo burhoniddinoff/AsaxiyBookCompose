@@ -68,6 +68,7 @@ fun SearchContent(data: List<BookUIData>, eventListener: (SearchIntent) -> Unit)
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFF0F172B))
+
     ) {
 
         var search by rememberSaveable { mutableStateOf("") }
@@ -116,7 +117,9 @@ fun SearchContent(data: List<BookUIData>, eventListener: (SearchIntent) -> Unit)
                             .fillMaxWidth()
                             .height(200.dp)
                             .padding(horizontal = 15.dp, vertical = 10.dp)
-
+                            .clickable {
+                                eventListener(SearchIntent.NextScreen(it))
+                            }
                     ) {
 
                         ElevatedCard(
@@ -139,13 +142,13 @@ fun SearchContent(data: List<BookUIData>, eventListener: (SearchIntent) -> Unit)
                                 .weight(1f)
                         ) {
                             Text(
-                                text = "O'tkan kunlar",
+                                text = it.name,
                                 color = Color.White,
                                 fontSize = 20.sp
                             )
 
                             Text(
-                                text = "Abdulla Qodiriy",
+                                text = it.author,
                                 color = Color(0xFF81FFFFFF),
                                 fontSize = 17.sp,
                                 modifier = Modifier.padding(top = 20.dp)

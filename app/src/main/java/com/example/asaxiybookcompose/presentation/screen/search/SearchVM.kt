@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.asaxiybookcompose.data.data.BookUIData
 import com.example.asaxiybookcompose.domain.AppRepository
 import com.example.asaxiybookcompose.navigation.AppNavigator
+import com.example.asaxiybookcompose.presentation.screen.info.InfoScreen
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -18,7 +19,7 @@ class SearchVM @Inject constructor(
     private val repository: AppRepository,
 ) : ViewModel() {
 
-     val resultBooks = MutableStateFlow<List<BookUIData>>(arrayListOf())
+    val resultBooks = MutableStateFlow<List<BookUIData>>(arrayListOf())
 
     fun evenDispatcher(intent: SearchIntent) {
 
@@ -26,6 +27,10 @@ class SearchVM @Inject constructor(
 
             SearchIntent.BackScreen -> {
                 backScreen()
+            }
+
+           is SearchIntent.NextScreen -> {
+                nextScreen(intent.data)
             }
 
             is SearchIntent.ResultSearchBook -> {
@@ -47,6 +52,12 @@ class SearchVM @Inject constructor(
     private fun backScreen() {
         viewModelScope.launch {
             navigator.back()
+        }
+    }
+
+    private fun nextScreen(data: BookUIData) {
+        viewModelScope.launch {
+            navigator.navigate(InfoScreen(data))
         }
     }
 
