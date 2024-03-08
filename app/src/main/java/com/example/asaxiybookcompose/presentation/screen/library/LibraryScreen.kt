@@ -44,29 +44,6 @@ import com.example.asaxiybookcompose.ui.theme.AsaxiyBookComposeTheme
 import com.sudo_pacman.asaxiybooks.data.model.CategoryByBooksData
 
 
-data class LibraryData(
-    val bookImage: Int,
-    val bookName: String,
-    val bookAuthor: String,
-)
-
-
-//val arrayList = ArrayList<LibraryData>().apply {
-//    add(LibraryData(R.drawable.book, "O'tkan kunlar", "Abdulla Qodiriy"))
-//    add(LibraryData(R.drawable.book, "Men Bilol", "Garri Kreyg"))
-//    add(LibraryData(R.drawable.book, "Jimjitlik", "Said Ahmad"))
-//    add(LibraryData(R.drawable.book, "Cho'qintirgan ota", "Morio Puzo"))
-//    add(LibraryData(R.drawable.book, "Men Bilol", "Garri Kreyg"))
-//    add(LibraryData(R.drawable.book, "Jimjitlik", "Said Ahmad"))
-//}
-//
-//val ls = ArrayList<CategoryData>().apply {
-//    add(CategoryData("Books1", arrayList.subList(0, 2)))
-//    add(CategoryData("Books2", arrayList.subList(0, 4)))
-//    add(CategoryData("Books3", arrayList))
-//}
-
-
 class LibraryScreen : Screen {
 
     @Composable
@@ -74,6 +51,7 @@ class LibraryScreen : Screen {
         val viewModel = getViewModel<LibraryViewModel>()
         viewModel.onEventDispatcherLibrary(LibraryIntent.GetAllCategoryList)
         val categoryList by viewModel.loadCategoryBookList.collectAsState(initial = null)
+
         val message by viewModel.errorMessage.collectAsState(initial = null)
         if (message != null) {
             Toast.makeText(LocalContext.current, message, Toast.LENGTH_SHORT).show()
@@ -123,11 +101,9 @@ fun LibraryContent(data: List<CategoryByBooksData>) {
 
         LazyColumn {
 
-
             items(data) {
                 ItemCategory(it)
             }
-
 
         }
 
@@ -199,7 +175,10 @@ fun ItemLibrary(product: BookUIData) {
                 contentScale = ContentScale.Crop,
             )
         }
-        Text(text = product.name, modifier = Modifier.padding(top = 10.dp), fontSize = 18.sp, color = Color.White)
+
+        Text(text = product.name, modifier = Modifier
+            .padding(top = 10.dp)
+            .width(100.dp), fontSize = 18.sp, color = Color.White, maxLines = 2)
         Text(text = product.author, fontSize = 14.sp, color = Color(0xFF59688F))
     }
 
