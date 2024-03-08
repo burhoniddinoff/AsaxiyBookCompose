@@ -48,12 +48,14 @@ class MainScreen : Screen {
 
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun ScreenContent() {
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
         TabNavigator(HomeTab) {
             Scaffold(
                 content = { padding ->
@@ -82,8 +84,6 @@ fun ScreenContent() {
 //    Audio(R.drawable.ic_menu_audio, "Audio kitoblar"),
 //    Profile(R.drawable.ic_menu_profile, "Profil")
 //}
-
-
 
 
 @Composable
