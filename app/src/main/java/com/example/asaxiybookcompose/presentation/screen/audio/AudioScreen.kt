@@ -1,7 +1,6 @@
 package com.example.asaxiybookcompose.presentation.screen.audio
 
 import android.widget.Toast
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -40,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getViewModel
+import coil.compose.AsyncImage
 import com.example.asaxiybookcompose.R
 import com.example.asaxiybookcompose.data.data.BookUIData
 import com.example.asaxiybookcompose.ui.theme.AsaxiyBookComposeTheme
@@ -87,15 +87,15 @@ fun LibraryContent(data: List<CategoryByBooksData>, eventListener: (AudioIntent)
                     .weight(1f)
             )
 
-            Image(
-                painter = painterResource(id = R.drawable.ic_search),
-                contentDescription = null,
-                modifier = Modifier
-                    .padding(end = 14.dp, top = 14.dp)
-                    .size(36.dp)
-                    .padding(6.dp)
-                    .align(Alignment.CenterVertically)
-            )
+//            Image(
+//                painter = painterResource(id = R.drawable.ic_search),
+//                contentDescription = null,
+//                modifier = Modifier
+//                    .padding(end = 14.dp, top = 14.dp)
+//                    .size(36.dp)
+//                    .padding(6.dp)
+//                    .align(Alignment.CenterVertically)
+//            )
         }
 
         LazyColumn {
@@ -157,7 +157,7 @@ fun ItemLibrary(product: BookUIData, eventListener: (AudioIntent) -> Unit) {
     Column(
         modifier = Modifier
             .clickable {
-                eventListener(AudioIntent.ButtonClick)
+                eventListener(AudioIntent.ButtonClick(product))
             }
             .fillMaxSize()
             .background(Color(0xFF0F172B))
@@ -169,12 +169,22 @@ fun ItemLibrary(product: BookUIData, eventListener: (AudioIntent) -> Unit) {
                 .fillMaxHeight()
                 .clip(shape = RoundedCornerShape(10.dp)),
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.book),
+
+//            Image(
+//                painter = painterResource(id = R.drawable.book),
+//                contentDescription = null,
+//                modifier = Modifier.fillMaxSize(),
+//                contentScale = ContentScale.Crop,
+//            )
+
+            AsyncImage(
+                model = product.coverImage,
                 contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.height(200.dp),
                 contentScale = ContentScale.Crop,
+                error = painterResource(id = R.drawable.book),
             )
+
         }
 
         Text(

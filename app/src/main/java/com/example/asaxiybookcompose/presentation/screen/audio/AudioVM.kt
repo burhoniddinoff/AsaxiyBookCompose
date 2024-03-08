@@ -2,6 +2,7 @@ package com.example.asaxiybookcompose.presentation.screen.audio
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.asaxiybookcompose.data.data.BookUIData
 import com.example.asaxiybookcompose.domain.AppRepository
 import com.example.asaxiybookcompose.navigation.AppNavigator
 import com.example.asaxiybookcompose.presentation.screen.audio_item.AudioItemScreen
@@ -39,15 +40,15 @@ class AudioVM @Inject constructor(
                 }.launchIn(viewModelScope)
             }
 
-            AudioIntent.ButtonClick -> {
-                nextScreen()
+            is AudioIntent.ButtonClick -> {
+                nextScreen(intent.data)
             }
         }
     }
 
-    private fun nextScreen() {
+    private fun nextScreen(data: BookUIData) {
         viewModelScope.launch {
-            navigator.navigate(AudioItemScreen())
+            navigator.navigate(AudioItemScreen(data))
         }
     }
 

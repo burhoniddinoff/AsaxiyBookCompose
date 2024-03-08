@@ -103,8 +103,11 @@ dependencies {
     implementation("com.google.firebase:firebase-storage")
 
     // TabNavigator
-    implementation("cafe.adriel.voyager:voyager-tab-navigator:1.0.0")
+    implementation(libs.voyager.tab.navigator)
 
     // pdf viewer
-    implementation("io.github.grizzi91:bouquet:1.1.2")
+    implementation(libs.bouquet)
+
+    // coil
+    implementation(libs.coil.compose)
 }

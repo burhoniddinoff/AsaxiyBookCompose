@@ -2,6 +2,7 @@ package com.example.asaxiybookcompose.presentation.screen.audio_item
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,18 +27,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.hilt.getViewModel
+import coil.compose.AsyncImage
 import com.example.asaxiybookcompose.R
+import com.example.asaxiybookcompose.data.data.BookUIData
 import com.example.asaxiybookcompose.ui.theme.AsaxiyBookComposeTheme
 
-class AudioItemScreen : Screen {
+class AudioItemScreen(val data: BookUIData) : Screen {
     @Composable
     override fun Content() {
-        AudioItemContent()
+
+        val viewModel = getViewModel<AudioItemVM>()
+
+        AudioItemContent(data, viewModel::onEventDispatcher)
     }
 }
 
 @Composable
-fun AudioItemContent() {
+fun AudioItemContent(data: BookUIData, eventListener: (AudioItemIntent) -> Unit) {
 
     Column(
         modifier = Modifier
@@ -51,6 +58,9 @@ fun AudioItemContent() {
             modifier = Modifier
                 .size(56.dp)
                 .padding(16.dp)
+                .clickable {
+                    eventListener(AudioItemIntent.OnClickBack)
+                }
         )
 
         Box(
@@ -61,16 +71,24 @@ fun AudioItemContent() {
                 .padding(top = 16.dp)
                 .clip(RoundedCornerShape(10.dp))
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.img_umar_ibn_xattob),
-                contentDescription = "Umar",
+//            Image(
+//                painter = painterResource(id = R.drawable.img_umar_ibn_xattob),
+//                contentDescription = "Umar",
+//                modifier = Modifier.fillMaxSize(),
+//                contentScale = ContentScale.Crop
+//            )
+
+            AsyncImage(
+                model = data.coverImage,
+                contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+                error = painterResource(id = R.drawable.book),
             )
         }
 
         Text(
-            text = "Saodat asri qissalari",
+            text = data.name,
             color = Color.White,
             textAlign = TextAlign.Center,
             fontSize = 20.sp,
@@ -81,7 +99,7 @@ fun AudioItemContent() {
         )
 
         Text(
-            text = "Ahmad Lutfiy",
+            text = data.author,
             color = Color(0xFF747b81),
             textAlign = TextAlign.Center,
             fontSize = 14.sp,
@@ -123,6 +141,43 @@ fun AudioItemContent() {
             )
 
         }
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    top = 60.dp,
+                    start = 60.dp,
+                    end = 60.dp
+                )
+        ) {
+
+            Image(
+                painter = painterResource(id = R.drawable.ic_prev),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(36.dp)
+                    .align(Alignment.CenterStart)
+            )
+
+            Image(
+                painter = painterResource(id = R.drawable.ic_pause),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(36.dp)
+                    .align(Alignment.Center)
+            )
+
+            Image(
+                painter = painterResource(id = R.drawable.ic_next_2),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(36.dp)
+                    .align(Alignment.CenterEnd)
+            )
+
+        }
+
     }
 
 }
