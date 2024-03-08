@@ -1,5 +1,7 @@
 package com.example.asaxiybookcompose.presentation.screen.audio_item
 
+import android.media.MediaPlayer
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,11 +17,15 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -31,16 +37,44 @@ import cafe.adriel.voyager.hilt.getViewModel
 import coil.compose.AsyncImage
 import com.example.asaxiybookcompose.R
 import com.example.asaxiybookcompose.data.data.BookUIData
+import com.example.asaxiybookcompose.myLog
+import com.example.asaxiybookcompose.presentation.screen.info.InfoViewModel
 import com.example.asaxiybookcompose.ui.theme.AsaxiyBookComposeTheme
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FileDownloadTask
+import com.google.firebase.storage.ktx.storage
+import com.rizzi.bouquet.ResourceType
+import com.rizzi.bouquet.VerticalPDFReader
+import com.rizzi.bouquet.rememberVerticalPdfReaderState
 
 class AudioItemScreen(val data: BookUIData) : Screen {
+
     @Composable
     override fun Content() {
 
         val viewModel = getViewModel<AudioItemVM>()
 
+
         AudioItemContent(data, viewModel::onEventDispatcher)
+
+
+
+        viewModel.onEventDispatcher(AudioItemIntent.OpenAudio(data))
+
+        val book by viewModel.audio.collectAsState(initial = null)
+
+        book?.let {
+            "audio null emas".myLog()
+
+            val context = LocalContext.current
+            val mediaPlayer = MediaPlayer.create(
+                context, Uri.fromFile(it)
+            )
+
+            mediaPlayer.start()
+        }
     }
+
 }
 
 @Composable
@@ -109,7 +143,7 @@ fun AudioItemContent(data: BookUIData, eventListener: (AudioItemIntent) -> Unit)
         )
 
         Slider(
-            value = 1f,
+            value = 0.1f,
             onValueChange = { },
             modifier = Modifier
                 .fillMaxWidth()
