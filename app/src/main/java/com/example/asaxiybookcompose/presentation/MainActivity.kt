@@ -7,6 +7,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.lifecycleScope
 import cafe.adriel.voyager.navigator.CurrentScreen
 import cafe.adriel.voyager.navigator.Navigator
+import com.example.asaxiybookcompose.myLog
 import com.example.asaxiybookcompose.navigation.AppNavigationHandler
 import com.example.asaxiybookcompose.presentation.screen.splash.SplashScreen
 import com.example.asaxiybookcompose.ui.theme.AsaxiyBookComposeTheme
@@ -17,6 +18,10 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    init {
+        "log".myLog()
+    }
 
     @Inject
     lateinit var handler: AppNavigationHandler
