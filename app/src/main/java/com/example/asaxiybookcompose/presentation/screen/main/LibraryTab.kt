@@ -13,7 +13,7 @@ import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.example.asaxiybookcompose.R
 import com.example.asaxiybookcompose.presentation.screen.library.LibraryScreen
 
-object BooksTab : Tab {
+object LibraryTab : Tab {
     override val options: TabOptions
         @Composable
         get() {
@@ -34,7 +34,6 @@ object BooksTab : Tab {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.White)
         ) {
             LibraryScreen().Content()
         }

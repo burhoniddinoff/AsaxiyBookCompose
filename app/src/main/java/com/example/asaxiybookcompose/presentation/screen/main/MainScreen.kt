@@ -64,7 +64,7 @@ fun ScreenContent() {
                 bottomBar = {
                     BottomNavigation {
                         TabNavigationItem(HomeTab)
-                        TabNavigationItem(BooksTab)
+                        TabNavigationItem(LibraryTab)
                         TabNavigationItem(AudioTab)
                         TabNavigationItem(ProfileTab)
                     }
