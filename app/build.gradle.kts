@@ -100,6 +100,7 @@ dependencies {
 
     //noinspection UseTomlInstead
     implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-storage")
 
     // TabNavigator
     implementation("cafe.adriel.voyager:voyager-tab-navigator:1.0.0")
