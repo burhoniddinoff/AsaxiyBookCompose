@@ -3,6 +3,7 @@ package com.example.asaxiybookcompose.presentation.screen.library
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -48,7 +49,6 @@ class LibraryScreen : Screen {
     @Composable
     override fun Content() {
         val viewModel = getViewModel<LibraryViewModel>()
-        viewModel.onEventDispatcherLibrary(LibraryIntent.GetAllCategoryList)
         val categoryList by viewModel.loadCategoryBookList.collectAsState(initial = null)
 
         val message by viewModel.errorMessage.collectAsState(initial = null)
@@ -57,14 +57,14 @@ class LibraryScreen : Screen {
         }
 
         categoryList?.let {
-            LibraryContent(it)
+            LibraryContent(it, viewModel::onEventDispatcherLibrary)
         }
     }
 
 }
 
 @Composable
-fun LibraryContent(data: List<CategoryByBooksData>) {
+fun LibraryContent(data: List<CategoryByBooksData>, eventDispatcher: (LibraryIntent) -> Unit) {
 
     Column(
         modifier = Modifier
@@ -101,7 +101,7 @@ fun LibraryContent(data: List<CategoryByBooksData>) {
         LazyColumn {
 
             items(data) {
-                ItemCategory(it)
+                ItemCategory(it, eventDispatcher)
             }
 
         }
@@ -111,7 +111,7 @@ fun LibraryContent(data: List<CategoryByBooksData>) {
 }
 
 @Composable
-fun ItemCategory(data: CategoryByBooksData) {
+fun ItemCategory(data: CategoryByBooksData, eventDispatcher: (LibraryIntent) -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -145,21 +145,25 @@ fun ItemCategory(data: CategoryByBooksData) {
             .padding(bottom = 20.dp),
     ) {
         items(data.books) {
-            ItemLibrary(product = it)
+            ItemLibrary(product = it, eventDispatcher)
         }
     }
 }
 
 @Composable
-fun ItemLibrary(product: BookUIData) {
+fun ItemLibrary(product: BookUIData, eventDispatcher: (LibraryIntent) -> Unit) {
 
 
     Column(
         modifier = Modifier
+            .clickable() {
+                eventDispatcher(LibraryIntent.ButtonClick)
+            }
             .fillMaxSize()
             .background(Color(0xFF0F172B))
-            .padding(6.dp)
-    ) {
+            .padding(6.dp),
+
+        ) {
         ElevatedCard(
             modifier = Modifier
                 .width(160.dp)
@@ -174,9 +178,11 @@ fun ItemLibrary(product: BookUIData) {
             )
         }
 
-        Text(text = product.name, modifier = Modifier
-            .padding(top = 10.dp)
-            .width(100.dp), fontSize = 18.sp, color = Color.White, maxLines = 2)
+        Text(
+            text = product.name, modifier = Modifier
+                .padding(top = 10.dp)
+                .width(100.dp), fontSize = 18.sp, color = Color.White, maxLines = 2
+        )
         Text(text = product.author, fontSize = 14.sp, color = Color(0xFF59688F))
     }
 

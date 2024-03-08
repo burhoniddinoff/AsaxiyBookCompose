@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -20,6 +21,9 @@ class LibraryViewModel @Inject constructor(
     val loadCategoryBookList = MutableSharedFlow<List<CategoryByBooksData>>()
     val errorMessage = MutableSharedFlow<String>()
     val progress = MutableSharedFlow<Boolean>()
+
+
+
 
     fun onEventDispatcherLibrary(intent: LibraryIntent) {
         when (intent) {
@@ -37,6 +41,16 @@ class LibraryViewModel @Inject constructor(
                 }.launchIn(viewModelScope)
 
             }
+
+            LibraryIntent.ButtonClick -> {
+                nextScreen()
+            }
+        }
+    }
+
+    private fun nextScreen() {
+        viewModelScope.launch {
+
         }
     }
 }
