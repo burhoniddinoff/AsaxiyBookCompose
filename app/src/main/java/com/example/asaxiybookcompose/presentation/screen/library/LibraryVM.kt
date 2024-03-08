@@ -2,9 +2,11 @@ package com.example.asaxiybookcompose.presentation.screen.library
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.asaxiybookcompose.data.data.BookUIData
 import com.example.asaxiybookcompose.domain.AppRepository
 import com.example.asaxiybookcompose.myLog
 import com.example.asaxiybookcompose.navigation.AppNavigator
+import com.example.asaxiybookcompose.presentation.screen.info.InfoScreen
 import com.sudo_pacman.asaxiybooks.data.model.CategoryByBooksData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -44,16 +46,15 @@ class LibraryViewModel @Inject constructor(
                 }.launchIn(viewModelScope)
 
             }
-
-            LibraryIntent.ButtonClick -> {
-                nextScreen()
+            is LibraryIntent.BookClick -> {
+                nextScreen(intent.product)
             }
         }
     }
 
-    private fun nextScreen() {
+    private fun nextScreen(product: BookUIData) {
         viewModelScope.launch {
-
+            navigator.navigate(InfoScreen(product))
         }
     }
 }

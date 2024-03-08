@@ -104,4 +104,6 @@ dependencies {
     // TabNavigator
     implementation("cafe.adriel.voyager:voyager-tab-navigator:1.0.0")
 
+    // pdf viewer
+    implementation("io.github.grizzi91:bouquet:1.1.2")
 }

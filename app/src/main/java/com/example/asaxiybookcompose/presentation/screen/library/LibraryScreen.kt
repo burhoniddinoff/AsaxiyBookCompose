@@ -156,8 +156,8 @@ fun ItemLibrary(product: BookUIData, eventDispatcher: (LibraryIntent) -> Unit) {
 
     Column(
         modifier = Modifier
-            .clickable() {
-                eventDispatcher(LibraryIntent.ButtonClick)
+            .clickable {
+                eventDispatcher(LibraryIntent.BookClick(product))
             }
             .fillMaxSize()
             .background(Color(0xFF0F172B))
