@@ -7,6 +7,7 @@ import com.example.asaxiybookcompose.domain.AppRepository
 import com.example.asaxiybookcompose.myLog
 import com.example.asaxiybookcompose.navigation.AppNavigator
 import com.example.asaxiybookcompose.presentation.screen.info.InfoScreen
+import com.example.asaxiybookcompose.presentation.screen.search.SearchScreen
 import com.sudo_pacman.asaxiybooks.data.model.CategoryByBooksData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -24,8 +25,6 @@ class LibraryViewModel @Inject constructor(
     val loadCategoryBookList = MutableSharedFlow<List<CategoryByBooksData>>()
     val errorMessage = MutableSharedFlow<String>()
     val progress = MutableSharedFlow<Boolean>()
-
-
 
 
     fun onEventDispatcherLibrary(intent: LibraryIntent) {
@@ -46,6 +45,11 @@ class LibraryViewModel @Inject constructor(
                 }.launchIn(viewModelScope)
 
             }
+
+            LibraryIntent.SearchClick -> {
+                searchScreen()
+            }
+
             is LibraryIntent.BookClick -> {
                 nextScreen(intent.product)
             }
@@ -55,6 +59,12 @@ class LibraryViewModel @Inject constructor(
     private fun nextScreen(product: BookUIData) {
         viewModelScope.launch {
             navigator.navigate(InfoScreen(product))
+        }
+    }
+
+    private fun searchScreen() {
+        viewModelScope.launch {
+            navigator.navigate(SearchScreen())
         }
     }
 }

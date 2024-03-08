@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -38,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getViewModel
+import coil.compose.AsyncImage
 import com.example.asaxiybookcompose.R
 import com.example.asaxiybookcompose.data.data.BookUIData
 import com.example.asaxiybookcompose.ui.theme.AsaxiyBookComposeTheme
@@ -96,6 +98,9 @@ fun LibraryContent(data: List<CategoryByBooksData>, eventDispatcher: (LibraryInt
                     .size(36.dp)
                     .padding(6.dp)
                     .align(Alignment.CenterVertically)
+                    .clickable {
+                        eventDispatcher(LibraryIntent.SearchClick)
+                    }
             )
         }
 
@@ -171,11 +176,12 @@ fun ItemLibrary(product: BookUIData, eventDispatcher: (LibraryIntent) -> Unit) {
                 .fillMaxHeight()
                 .clip(shape = RoundedCornerShape(10.dp)),
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.book),
+            AsyncImage(
+                model = product.coverImage,
                 contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.height(200.dp),
                 contentScale = ContentScale.Crop,
+                error = painterResource(id = R.drawable.book),
             )
         }
 
