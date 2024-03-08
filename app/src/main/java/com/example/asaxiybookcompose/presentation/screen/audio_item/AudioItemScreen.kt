@@ -48,6 +48,7 @@ import com.rizzi.bouquet.VerticalPDFReader
 import com.rizzi.bouquet.rememberVerticalPdfReaderState
 
 class AudioItemScreen(val data: BookUIData) : Screen {
+    private var mediaPlayer: MediaPlayer? = null
 
     @Composable
     override fun Content() {
@@ -55,7 +56,7 @@ class AudioItemScreen(val data: BookUIData) : Screen {
         val viewModel = getViewModel<AudioItemVM>()
 
 
-        AudioItemContent(data, viewModel::onEventDispatcher)
+        AudioItemContent(data, viewModel::onEventDispatcher, mediaPlayer)
 
 
 
@@ -67,18 +68,22 @@ class AudioItemScreen(val data: BookUIData) : Screen {
             "audio null emas".myLog()
 
             val context = LocalContext.current
-            val mediaPlayer = MediaPlayer.create(
+            mediaPlayer = MediaPlayer.create(
                 context, Uri.fromFile(it)
             )
 
-            mediaPlayer.start()
+            mediaPlayer?.let {
+                if (!mediaPlayer!!.isPlaying) {
+                    mediaPlayer!!.start()
+                }
+            }
         }
     }
 
 }
 
 @Composable
-fun AudioItemContent(data: BookUIData, eventListener: (AudioItemIntent) -> Unit) {
+fun AudioItemContent(data: BookUIData, eventListener: (AudioItemIntent) -> Unit, mediaPlayer: MediaPlayer?) {
 
     Column(
         modifier = Modifier
@@ -200,6 +205,16 @@ fun AudioItemContent(data: BookUIData, eventListener: (AudioItemIntent) -> Unit)
                 modifier = Modifier
                     .size(36.dp)
                     .align(Alignment.Center)
+                    .clickable {
+                        mediaPlayer?.let {
+                            if (mediaPlayer.isPlaying) {
+                                mediaPlayer.stop()
+                            }
+                            else {
+                                mediaPlayer.start()
+                            }
+                        }
+                    }
             )
 
             Image(

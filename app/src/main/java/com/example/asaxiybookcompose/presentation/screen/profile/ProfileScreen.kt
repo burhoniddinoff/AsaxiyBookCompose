@@ -1,5 +1,6 @@
 package com.example.asaxiybookcompose.presentation.screen.profile
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -37,6 +38,7 @@ class ProfileScreen : Screen {
     }
 }
 
+@SuppressLint("InvalidColorHexValue")
 @Composable
 fun ProfileContent() {
 
@@ -72,7 +74,7 @@ fun ProfileContent() {
                 modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Abdulqodir Burhoniddinov", color = Color.White, fontSize = 22.sp, modifier = Modifier.padding(start = 20.dp)
+                    text = "Muhammad G'aniyev", color = Color.White, fontSize = 22.sp, modifier = Modifier.padding(start = 20.dp)
                 )
 
                 Text(
@@ -84,18 +86,6 @@ fun ProfileContent() {
 
         }
 
-//        Button(
-//            onClick = { /*TODO*/ },
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .height(64.dp)
-//                .clip(RoundedCornerShape(10.dp))
-//                .padding(top = 20.dp, start = 15.dp, end = 15.dp),
-//            colors = ButtonDefaults.buttonColors(Color(0xFF008dff)),
-//
-//        ) {
-//            Text(text = "Hisobni to'ldirish")
-//        }
 
         Box(
             modifier = Modifier
