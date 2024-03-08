@@ -14,6 +14,9 @@ import com.example.asaxiybookcompose.R
 import com.example.asaxiybookcompose.presentation.screen.book.BookScreen
 
 object HomeTab : Tab {
+
+    private fun readResolve(): Any = HomeTab
+
     override val options: TabOptions
         @Composable
         get() {

@@ -14,6 +14,9 @@ import com.example.asaxiybookcompose.R
 import com.example.asaxiybookcompose.presentation.screen.audio.AudioScreen
 
 object AudioTab : Tab {
+
+    private fun readResolve(): Any = AudioTab
+
     override val options: TabOptions
         @Composable
         get() {

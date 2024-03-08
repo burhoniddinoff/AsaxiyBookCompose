@@ -14,6 +14,9 @@ import com.example.asaxiybookcompose.R
 import com.example.asaxiybookcompose.presentation.screen.profile.ProfileScreen
 
 object ProfileTab : Tab {
+
+    private fun readResolve(): Any = ProfileTab
+
     override val options: TabOptions
         @Composable
         get() {
