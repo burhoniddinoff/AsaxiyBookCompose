@@ -72,7 +72,7 @@ fun ProfileContent() {
                 modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Abdulqodir Burhoniddinov", color = Color.White, fontSize = 22.sp, modifier = Modifier.padding(start = 20.dp)
+                    text = "Muhammad G'aniyev", color = Color.White, fontSize = 22.sp, modifier = Modifier.padding(start = 20.dp)
                 )
 
                 Text(
