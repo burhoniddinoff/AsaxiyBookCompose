@@ -17,7 +17,6 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -38,14 +37,7 @@ import coil.compose.AsyncImage
 import com.example.asaxiybookcompose.R
 import com.example.asaxiybookcompose.data.data.BookUIData
 import com.example.asaxiybookcompose.myLog
-import com.example.asaxiybookcompose.presentation.screen.info.InfoViewModel
 import com.example.asaxiybookcompose.ui.theme.AsaxiyBookComposeTheme
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FileDownloadTask
-import com.google.firebase.storage.ktx.storage
-import com.rizzi.bouquet.ResourceType
-import com.rizzi.bouquet.VerticalPDFReader
-import com.rizzi.bouquet.rememberVerticalPdfReaderState
 
 class AudioItemScreen(val data: BookUIData) : Screen {
     private var mediaPlayer: MediaPlayer? = null
@@ -62,21 +54,26 @@ class AudioItemScreen(val data: BookUIData) : Screen {
 
         viewModel.onEventDispatcher(AudioItemIntent.OpenAudio(data))
 
-        val book by viewModel.audio.collectAsState(initial = null)
+        val audio by viewModel.audio.collectAsState(initial = null)
 
-        book?.let {
+        mediaPlayer?.stop()
+
+        audio?.let {
             "audio null emas".myLog()
 
             val context = LocalContext.current
-            mediaPlayer = MediaPlayer.create(
-                context, Uri.fromFile(it)
-            )
+            if (mediaPlayer == null) {
+                mediaPlayer = MediaPlayer.create(
+                    context, Uri.fromFile(it)
+                )
 
-            mediaPlayer?.let {
-                if (!mediaPlayer!!.isPlaying) {
-                    mediaPlayer!!.start()
+                mediaPlayer?.let {
+                    if (!mediaPlayer!!.isPlaying) {
+                        mediaPlayer!!.start()
+                    }
                 }
             }
+            else mediaPlayer?.stop()
         }
     }
 
