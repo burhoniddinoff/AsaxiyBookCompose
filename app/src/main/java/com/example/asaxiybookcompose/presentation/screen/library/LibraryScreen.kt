@@ -1,5 +1,6 @@
 package com.example.asaxiybookcompose.presentation.screen.library
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -14,15 +15,19 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -31,8 +36,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.hilt.getViewModel
 import com.example.asaxiybookcompose.R
+import com.example.asaxiybookcompose.data.data.BookUIData
 import com.example.asaxiybookcompose.ui.theme.AsaxiyBookComposeTheme
+import com.sudo_pacman.asaxiybooks.data.model.CategoryByBooksData
 
 
 data class LibraryData(
@@ -41,37 +49,44 @@ data class LibraryData(
     val bookAuthor: String,
 )
 
-data class CategoryData(
-    val name: String,
-    val ls: List<LibraryData>,
-)
 
-val arrayList = ArrayList<LibraryData>().apply {
-    add(LibraryData(R.drawable.book, "O'tkan kunlar", "Abdulla Qodiriy"))
-    add(LibraryData(R.drawable.book, "Men Bilol", "Garri Kreyg"))
-    add(LibraryData(R.drawable.book, "Jimjitlik", "Said Ahmad"))
-    add(LibraryData(R.drawable.book, "Cho'qintirgan ota", "Morio Puzo"))
-    add(LibraryData(R.drawable.book, "Men Bilol", "Garri Kreyg"))
-    add(LibraryData(R.drawable.book, "Jimjitlik", "Said Ahmad"))
-}
-
-val ls = ArrayList<CategoryData>().apply {
-    add(CategoryData("Books1", arrayList.subList(0, 2)))
-    add(CategoryData("Books2", arrayList.subList(0, 4)))
-    add(CategoryData("Books3", arrayList))
-}
+//val arrayList = ArrayList<LibraryData>().apply {
+//    add(LibraryData(R.drawable.book, "O'tkan kunlar", "Abdulla Qodiriy"))
+//    add(LibraryData(R.drawable.book, "Men Bilol", "Garri Kreyg"))
+//    add(LibraryData(R.drawable.book, "Jimjitlik", "Said Ahmad"))
+//    add(LibraryData(R.drawable.book, "Cho'qintirgan ota", "Morio Puzo"))
+//    add(LibraryData(R.drawable.book, "Men Bilol", "Garri Kreyg"))
+//    add(LibraryData(R.drawable.book, "Jimjitlik", "Said Ahmad"))
+//}
+//
+//val ls = ArrayList<CategoryData>().apply {
+//    add(CategoryData("Books1", arrayList.subList(0, 2)))
+//    add(CategoryData("Books2", arrayList.subList(0, 4)))
+//    add(CategoryData("Books3", arrayList))
+//}
 
 
 class LibraryScreen : Screen {
+
     @Composable
     override fun Content() {
-        LibraryContent()
+        val viewModel = getViewModel<LibraryViewModel>()
+        viewModel.onEventDispatcherLibrary(LibraryIntent.GetAllCategoryList)
+        val categoryList by viewModel.loadCategoryBookList.collectAsState(initial = null)
+        val message by viewModel.errorMessage.collectAsState(initial = null)
+        if (message != null) {
+            Toast.makeText(LocalContext.current, message, Toast.LENGTH_SHORT).show()
+        }
 
+        categoryList?.let {
+            LibraryContent(it)
+        }
     }
+
 }
 
 @Composable
-fun LibraryContent() {
+fun LibraryContent(data: List<CategoryByBooksData>) {
 
     Column(
         modifier = Modifier
@@ -107,50 +122,11 @@ fun LibraryContent() {
 
         LazyColumn {
 
-            ls.forEach { data ->
 
-                item {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 12.dp, vertical = 5.dp),
-                    ) {
-
-                        Text(
-                            text = data.name,
-                            color = Color.White,
-                            fontSize = 23.sp,
-                            textAlign = TextAlign.Start,
-                            modifier = Modifier
-                                .align(Alignment.CenterStart)
-                        )
-
-                        Text(
-                            text = "Hammasi",
-                            color = Color(0xFF008dff),
-                            fontSize = 20.sp,
-                            modifier = Modifier
-                                .align(Alignment.CenterEnd)
-                        )
-
-
-                    }
-
-                    LazyRow(
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .wrapContentHeight()
-                            .padding(bottom = 20.dp),
-                    ) {
-                        data.ls.forEach { product ->
-                            item {
-                                ItemLibrary(product = product)
-                            }
-                        }
-                    }
-                }
-
+            items(data) {
+                ItemCategory(it)
             }
+
 
         }
 
@@ -159,7 +135,47 @@ fun LibraryContent() {
 }
 
 @Composable
-fun ItemLibrary(product: LibraryData) {
+fun ItemCategory(data: CategoryByBooksData) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 12.dp, vertical = 5.dp),
+    ) {
+
+        Text(
+            text = data.categoryName,
+            color = Color.White,
+            fontSize = 23.sp,
+            textAlign = TextAlign.Start,
+            modifier = Modifier
+                .align(Alignment.CenterStart)
+        )
+
+        Text(
+            text = "Hammasi",
+            color = Color(0xFF008dff),
+            fontSize = 20.sp,
+            modifier = Modifier
+                .align(Alignment.CenterEnd)
+        )
+
+
+    }
+
+    LazyRow(
+        modifier = Modifier
+            .fillMaxHeight()
+            .wrapContentHeight()
+            .padding(bottom = 20.dp),
+    ) {
+        items(data.books) {
+            ItemLibrary(product = it)
+        }
+    }
+}
+
+@Composable
+fun ItemLibrary(product: BookUIData) {
 
 
     Column(
@@ -181,8 +197,8 @@ fun ItemLibrary(product: LibraryData) {
                 contentScale = ContentScale.Crop,
             )
         }
-        Text(text = product.bookName, modifier = Modifier.padding(top = 10.dp), fontSize = 18.sp, color = Color.White)
-        Text(text = product.bookAuthor, fontSize = 14.sp, color = Color(0xFF59688F))
+        Text(text = product.name, modifier = Modifier.padding(top = 10.dp), fontSize = 18.sp, color = Color.White)
+        Text(text = product.author, fontSize = 14.sp, color = Color(0xFF59688F))
     }
 
 
@@ -193,6 +209,5 @@ fun ItemLibrary(product: LibraryData) {
 @Composable
 private fun PreviewContent() {
     AsaxiyBookComposeTheme {
-        ItemLibrary(arrayList[0])
     }
 }

@@ -5,6 +5,7 @@ plugins {
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
     id("com.google.gms.google-services")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -99,5 +100,8 @@ dependencies {
 
     //noinspection UseTomlInstead
     implementation("com.google.firebase:firebase-firestore")
+
+    // TabNavigator
+    implementation("cafe.adriel.voyager:voyager-tab-navigator:1.0.0")
 
 }

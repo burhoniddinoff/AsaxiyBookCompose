@@ -21,16 +21,16 @@ class LogInVMImpl @Inject constructor(
 ) : ViewModel(), LogInVM {
     override val uiState = MutableStateFlow(Unit)
 
-    override fun onDispatch(intent: LogInVM.MenuIntent) {
+    override fun onDispatch(intent: MenuIntent) {
 
         when (intent) {
 
-            LogInVM.MenuIntent.ButtonClick -> {
+            MenuIntent.ButtonClick -> {
                 registerScreen()
 
             }
 
-            is LogInVM.MenuIntent.SignScreen -> {
+            is MenuIntent.SignScreen -> {
 //                logInRequest(intent.gmail, intent.passWord)
                 nextScreen()
             }
@@ -39,7 +39,7 @@ class LogInVMImpl @Inject constructor(
     }
 
     override fun logInRequest(gmail: String, password: String) {
-        repository.loginUser(password, gmail).onEach {
+        repository.loginUser(password, gmail).onEach { it ->
             it.onSuccess {
                 nextScreen()
                 "logInRequest: next screen -> $it".myLog()
