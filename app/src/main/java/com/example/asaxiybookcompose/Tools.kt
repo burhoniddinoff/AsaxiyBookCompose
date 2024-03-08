@@ -1,7 +1,9 @@
 package com.example.asaxiybookcompose
 
 import android.util.Log
+import com.example.asaxiybookcompose.data.data.BookUIData
 import com.example.asaxiybookcompose.data.data.UserData
+import com.example.asaxiybookcompose.data.entity.EntityBookData
 import com.google.firebase.firestore.QuerySnapshot
 
 fun String.myLog(tag: String = "TTT") = Log.d(tag, this)
@@ -29,4 +31,37 @@ object Mapper {
         }
         return userList
     }
+}
+
+fun BookUIData.toEntityBookData(path: String): EntityBookData {
+    return EntityBookData(
+        id = 0,
+        docID = this.docID,
+        audioUrl = this.audioUrl,
+        author = this.author,
+        bookUrl = this.bookUrl,
+        categoryId = this.categoryId,
+        coverImage = this.coverImage,
+        description = this.description,
+        filePath = path,
+        name = this.name,
+        totalSize = this.totalSize,
+        type = this.type
+    )
+}
+
+fun EntityBookData.toUiData() : BookUIData {
+    return BookUIData(
+        docID = this.docID,
+        audioUrl = this.audioUrl,
+        author = this.author,
+        bookUrl = this.bookUrl,
+        categoryId = this.categoryId,
+        coverImage = this.coverImage,
+        description = this.description,
+        filePath = this.filePath,
+        name = this.name,
+        totalSize = this.totalSize,
+        type = this.type
+    )
 }

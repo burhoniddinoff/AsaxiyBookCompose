@@ -1,6 +1,8 @@
 package com.example.asaxiybookcompose.di
 
 import com.example.asaxiybookcompose.domain.AppRepository
+import com.example.asaxiybookcompose.domain.BookRepository
+import com.example.asaxiybookcompose.domain.Impl.BookRepositoryImpl
 import com.example.asaxiybookcompose.domain.Impl.AppRepositoryImpl
 import com.example.asaxiybookcompose.domain.Impl.RegisterRepositoryImpl
 import com.example.asaxiybookcompose.domain.RegisterRepository
@@ -19,4 +21,7 @@ interface RepositoryModule {
 
     @[Binds Singleton]
     fun bindLogin(impl: RegisterRepositoryImpl):RegisterRepository
+
+    @[Binds Singleton]
+    fun bindBook(impl: BookRepositoryImpl) : BookRepository
 }
