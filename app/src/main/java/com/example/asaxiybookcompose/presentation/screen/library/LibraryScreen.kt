@@ -39,6 +39,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getViewModel
 import com.example.asaxiybookcompose.R
 import com.example.asaxiybookcompose.data.data.BookUIData
+import com.example.asaxiybookcompose.myLog
 import com.example.asaxiybookcompose.ui.theme.AsaxiyBookComposeTheme
 import com.sudo_pacman.asaxiybooks.data.model.CategoryByBooksData
 
@@ -169,6 +170,7 @@ fun ItemCategory(data: CategoryByBooksData) {
             .padding(bottom = 20.dp),
     ) {
         items(data.books) {
+            "data $it".myLog()
             ItemLibrary(product = it)
         }
     }

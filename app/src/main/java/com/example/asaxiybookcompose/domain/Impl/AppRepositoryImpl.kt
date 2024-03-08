@@ -145,11 +145,18 @@ class AppRepositoryImpl @Inject constructor(
 
     override fun getCategoryByPdfBooks(): Flow<Result<List<CategoryByBooksData>>> =
         callbackFlow<Result<List<CategoryByBooksData>>> {
+            "repo kitob olishga keldi".myLog()
             val categoryList = ArrayList<CategoryByBooksData>()
             var count = 0
             fireStore.collection("category")
-                .addSnapshotListener { value, _ ->
+                .addSnapshotListener { value, error ->
+
+                    if (error != null) {
+                        "repo kitob olishda error ${error.message}".myLog()
+                    }
+
                     value?.forEach {
+                        "repo kitob olishda value bor".myLog()
                         val categoryName = it.data.getOrDefault("name", "") as String
                         val categoryId = it.id
                         fireStore.collection("books_data")
@@ -201,6 +208,8 @@ class AppRepositoryImpl @Inject constructor(
                                                     .toString(),
                                                 type = type,
                                             )
+
+                                        "repo kitob $data".myLog()
                                         listBookData.add(data)
                                     }
                                 }

@@ -3,6 +3,7 @@ package com.example.asaxiybookcompose.presentation.screen.library
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.asaxiybookcompose.domain.AppRepository
+import com.example.asaxiybookcompose.myLog
 import com.example.asaxiybookcompose.navigation.AppNavigator
 import com.sudo_pacman.asaxiybooks.data.model.CategoryByBooksData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,10 +25,12 @@ class LibraryViewModel @Inject constructor(
     fun onEventDispatcherLibrary(intent: LibraryIntent) {
         when (intent) {
             LibraryIntent.GetAllCategoryList -> {
+                "library vm kitob olishga keldi".myLog()
                 progress.tryEmit(true)
                 repository.getCategoryByPdfBooks().onEach { result ->
                     result.onSuccess {
                         progress.emit(false)
+                        "library vm keldi ${it.size} ".myLog()
                         loadCategoryBookList.emit(it)
                     }
                     result.onFailure {
