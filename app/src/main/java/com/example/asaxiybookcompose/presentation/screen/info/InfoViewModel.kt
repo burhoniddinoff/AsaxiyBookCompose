@@ -1,11 +1,9 @@
 package com.example.asaxiybookcompose.presentation.screen.info
 
-import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import com.example.asaxiybookcompose.data.data.BookUIData
 
-@HiltViewModel
-class InfoViewModel @Inject constructor(
+interface InfoViewModel {
 
-) : ViewModel() {
+    data class OpenBook(val bookData: BookUIData) : InfoViewModel
+
 }

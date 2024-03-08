@@ -33,6 +33,23 @@ object Mapper {
     }
 }
 
+fun BookUIData.toEntityBookData(path: String): EntityBookData {
+    return EntityBookData(
+        id = 0,
+        docID = this.docID,
+        audioUrl = this.audioUrl,
+        author = this.author,
+        bookUrl = this.bookUrl,
+        categoryId = this.categoryId,
+        coverImage = this.coverImage,
+        description = this.description,
+        filePath = path,
+        name = this.name,
+        totalSize = this.totalSize,
+        type = this.type
+    )
+}
+
 fun EntityBookData.toUiData() : BookUIData {
     return BookUIData(
         docID = this.docID,
