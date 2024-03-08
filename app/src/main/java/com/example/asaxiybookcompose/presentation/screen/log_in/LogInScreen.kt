@@ -153,7 +153,7 @@ fun ScreenContent(eventDispatcher: (MenuIntent) -> Unit) {
 
         Button(
             onClick = {
-                MenuIntent.SignScreen(gmail, password)
+                eventDispatcher(MenuIntent.SignScreen(gmail, password))
             },
             modifier = Modifier
                 .fillMaxWidth()

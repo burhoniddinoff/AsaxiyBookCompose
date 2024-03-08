@@ -27,12 +27,12 @@ class LogInVMImpl @Inject constructor(
 
             MenuIntent.ButtonClick -> {
                 registerScreen()
-
             }
 
+
             is MenuIntent.SignScreen -> {
-//                logInRequest(intent.gmail, intent.passWord)
-                nextScreen()
+                logInRequest(intent.gmail, intent.passWord)
+//                nextScreen()
             }
         }
 
